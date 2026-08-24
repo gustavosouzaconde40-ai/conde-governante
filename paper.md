@@ -16,6 +16,8 @@ Need neutral ruler for DESI, Euclid, Roman.
 
 # Mathematics
 Z' = g / ln(p)
-
+# Data
+Full dataset (1M prime gaps, 8.74 MB): https://github.com/gustavosouzaconde40-ai/conde-governanta/raw/principal/prime_gaps_1M.csv.gz
+Mean 1.00041294, q95=2.64, q99=3.90
 # References
 Zenodo DOI 10.5281/zenodo.22071438
