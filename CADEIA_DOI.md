@@ -44,3 +44,8 @@ DOI Pai: 10.5281/zenodo.21856036
 Equacao: Box φ + dV/dφ - 2ξR φ = 0 + Vainshtein + MCMC
 
 Cadeia: Regua 22096687 -> Triangulo 22164502 -> VIEC 22165507 -> FEMP 22168241 -> Framework 22166663
+
+## Apoio ao Cientista Independente
+PIX Celular: (27) 99817-4340
+Gustavo Alves Conde - Teoria Aeternvm Vacvvm
+Chave PIX: 27998174340
