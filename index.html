@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conde Governante - Régua de Governança</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #d4af37;
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            background: rgba(26, 26, 46, 0.95);
+            border: 2px solid #d4af37;
+            border-radius: 15px;
+            padding: 40px;
+            max-width: 1000px;
+            width: 100%;
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2.5em;
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+            letter-spacing: 2px;
+        }
+
+        .content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+
+        .controls {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .slider-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .slider-group label {
+            font-size: 1.2em;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .slider-group input[type="range"] {
+            width: 100%;
+            height: 8px;
+            border-radius: 5px;
+            background: linear-gradient(to right, #444, #d4af37);
+            outline: none;
+            -webkit-appearance: none;
+            appearance: none;
+        }
+
+        .slider-group input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            background: #d4af37;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.8);
+            transition: box-shadow 0.3s;
+        }
+
+        .slider-group input[type="range"]::-webkit-slider-thumb:hover {
+            box-shadow: 0 0 20px rgba(212, 175, 55, 1);
+        }
+
+        .slider-group input[type="range"]::-moz-range-thumb {
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            background: #d4af37;
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.8);
+            transition: box-shadow 0.3s;
+        }
+
+        .slider-group input[type="range"]::-moz-range-thumb:hover {
+            box-shadow: 0 0 20px rgba(212, 175, 55, 1);
+        }
+
+        .value-display {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.95em;
+        }
+
+        .value-number {
+            background: rgba(212, 175, 55, 0.1);
+            padding: 5px 12px;
+            border-radius: 5px;
+            border: 1px solid #d4af37;
+            font-weight: bold;
+        }
+
+        .canvas-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        canvas {
+            border: 2px solid #d4af37;
+            border-radius: 10px;
+            background: rgba(0, 0, 0, 0.3);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
+        }
+
+        .results {
+            background: rgba(212, 175, 55, 0.05);
+            border: 2px solid #d4af37;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .results h2 {
+            font-size: 1.1em;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .score {
+            font-size: 2.5em;
+            font-weight: bold;
+            margin: 15px 0;
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+        }
+
+        .classification {
+            font-size: 1.3em;
+            padding: 10px;
+            border-radius: 5px;
+            background: rgba(212, 175, 55, 0.15);
+            border: 1px solid #d4af37;
+        }
+
+        .classification.excelente {
+            background: rgba(76, 175, 80, 0.2);
+            border-color: #4caf50;
+            color: #7ede9f;
+        }
+
+        .classification.bom {
+            background: rgba(76, 175, 80, 0.15);
+            border-color: #8bc34a;
+            color: #aed581;
+        }
+
+        .classification.regular {
+            background: rgba(255, 193, 7, 0.15);
+            border-color: #ffc107;
+            color: #ffd54f;
+        }
+
+        .classification.baixo {
+            background: rgba(244, 67, 54, 0.2);
+            border-color: #f44336;
+            color: #ef5350;
+        }
+
+        @media (max-width: 800px) {
+            .content {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: 1.8em;
+            }
+
+            canvas {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>♔ Conde Governante - Régua de Governança ♔</h1>
+        
+        <div class="content">
+            <div class="controls">
+                <div class="slider-group">
+                    <label for="etica">Ética</label>
+                    <input type="range" id="etica" min="0" max="1" step="0.01" value="0.5">
+                    <div class="value-display">
+                        <span>Valor:</span>
+                        <span class="value-number" id="etica-value">0.50</span>
+                    </div>
+                </div>
+
+                <div class="slider-group">
+                    <label for="eficiencia">Eficiência</label>
+                    <input type="range" id="eficiencia" min="0" max="1" step="0.01" value="0.5">
+                    <div class="value-display">
+                        <span>Valor:</span>
+                        <span class="value-number" id="eficiencia-value">0.50</span>
+                    </div>
+                </div>
+
+                <div class="slider-group">
+                    <label for="transparencia">Transparência</label>
+                    <input type="range" id="transparencia" min="0" max="1" step="0.01" value="0.5">
+                    <div class="value-display">
+                        <span>Valor:</span>
+                        <span class="value-number" id="transparencia-value">0.50</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="canvas-container">
+                <canvas id="trianguloCanvas" width="350" height="350"></canvas>
+                
+                <div class="results">
+                    <h2>Resultados</h2>
+                    <div>
+                        <div>Nota Final</div>
+                        <div class="score" id="score">5.00</div>
+                    </div>
+                    <div class="classification" id="classification">Regular</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        // Importar a função de cálculo (se existir no módulo)
+        // Para agora, usaremos cálculo direto
+        
+        const canvas = document.getElementById('trianguloCanvas');
+        const ctx = canvas.getContext('2d');
+
+        const sliders = {
+            etica: document.getElementById('etica'),
+            eficiencia: document.getElementById('eficiencia'),
+            transparencia: document.getElementById('transparencia')
+        };
+
+        const valueDisplays = {
+            etica: document.getElementById('etica-value'),
+            eficiencia: document.getElementById('eficiencia-value'),
+            transparencia: document.getElementById('transparencia-value')
+        };
+
+        const scoreDisplay = document.getElementById('score');
+        const classificationDisplay = document.getElementById('classification');
+
+        // Função para desenhar o triângulo
+        function desenharTriangulo(etica, eficiencia, transparencia) {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            const centerX = canvas.width / 2;
+            const centerY = canvas.height / 2;
+            const radius = 120;
+
+            // Desenhar triângulo base
+            ctx.strokeStyle = '#d4af37';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+
+            // Vértices do triângulo (equilátero)
+            const top = {
+                x: centerX,
+                y: centerY - radius
+            };
+            const bottomLeft = {
+                x: centerX - (radius * Math.sqrt(3) / 2),
+                y: centerY + (radius / 2)
+            };
+            const bottomRight = {
+                x: centerX + (radius * Math.sqrt(3) / 2),
+                y: centerY + (radius / 2)
+            };
+
+            ctx.moveTo(top.x, top.y);
+            ctx.lineTo(bottomLeft.x, bottomLeft.y);
+            ctx.lineTo(bottomRight.x, bottomRight.y);
+            ctx.closePath();
+            ctx.stroke();
+
+            // Labels dos vértices
+            ctx.fillStyle = '#d4af37';
+            ctx.font = 'bold 14px Segoe UI';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+
+            ctx.fillText('Ética', top.x, top.y - 20);
+            ctx.fillText('Eficiência', bottomLeft.x - 30, bottomLeft.y + 20);
+            ctx.fillText('Transparência', bottomRight.x + 30, bottomRight.y + 20);
+
+            // Calcular posição do ponto baseado nos valores
+            // Coordenadas baricêntricas
+            const point = {
+                x: (etica * top.x + eficiencia * bottomLeft.x + transparencia * bottomRight.x),
+                y: (etica * top.y + eficiencia * bottomLeft.y + transparencia * bottomRight.y)
+            };
+
+            // Desenhar triângulo de preenchimento com os valores
+            ctx.fillStyle = `rgba(212, 175, 55, ${0.1 + 0.2 * (etica + eficiencia + transparencia) / 3})`;
+            ctx.beginPath();
+            ctx.moveTo(top.x * etica + bottomLeft.x * eficiencia + bottomRight.x * transparencia, 
+                       top.y * etica + bottomLeft.y * eficiencia + bottomRight.y * transparencia);
+            ctx.arc(point.x, point.y, 15, 0, Math.PI * 2);
+            ctx.fill();
+
+            // Desenhar ponto central
+            ctx.fillStyle = '#d4af37';
+            ctx.beginPath();
+            ctx.arc(point.x, point.y, 8, 0, Math.PI * 2);
+            ctx.fill();
+
+            // Desenhar círculo ao redor do ponto
+            ctx.strokeStyle = '#d4af37';
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.arc(point.x, point.y, 15, 0, Math.PI * 2);
+            ctx.stroke();
+        }
+
+        // Função para calcular a nota final
+        function calcularNota(etica, eficiencia, transparencia) {
+            // Escala de 0-10
+            const media = (etica + eficiencia + transparencia) / 3;
+            return (media * 10).toFixed(2);
+        }
+
+        // Função para classificar
+        function classificar(nota) {
+            const n = parseFloat(nota);
+            if (n >= 8) return { texto: 'Excelente', classe: 'excelente' };
+            if (n >= 6) return { texto: 'Bom', classe: 'bom' };
+            if (n >= 4) return { texto: 'Regular', classe: 'regular' };
+            return { texto: 'Baixo', classe: 'baixo' };
+        }
+
+        // Função para atualizar tudo
+        function atualizar() {
+            const etica = parseFloat(sliders.etica.value);
+            const eficiencia = parseFloat(sliders.eficiencia.value);
+            const transparencia = parseFloat(sliders.transparencia.value);
+
+            // Atualizar displays de valor
+            valueDisplays.etica.textContent = etica.toFixed(2);
+            valueDisplays.eficiencia.textContent = eficiencia.toFixed(2);
+            valueDisplays.transparencia.textContent = transparencia.toFixed(2);
+
+            // Desenhar triângulo
+            desenharTriangulo(etica, eficiencia, transparencia);
+
+            // Calcular e exibir nota
+            const nota = calcularNota(etica, eficiencia, transparencia);
+            scoreDisplay.textContent = nota;
+
+            // Atualizar classificação
+            const classif = classificar(nota);
+            classificationDisplay.textContent = classif.texto;
+            classificationDisplay.className = `classification ${classif.classe}`;
+        }
+
+        // Event listeners
+        sliders.etica.addEventListener('input', atualizar);
+        sliders.eficiencia.addEventListener('input', atualizar);
+        sliders.transparencia.addEventListener('input', atualizar);
+
+        // Atualizar inicial
+        atualizar();
+    </script>
+</body>
+</html>
