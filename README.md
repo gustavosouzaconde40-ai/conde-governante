@@ -57,8 +57,8 @@ Note: Tests should import the installed package (avoid manipulating sys.path in 
 
 Please cite the software using the JOSS paper and the repository:
 
-Gustavo Alves Conde (2026). Conde‑Ruler: a Python ruler for measuring the Conde current. https://github.com/gustavosouzaconde40-ai/conde-ruler
-
+Gustavo Alves Conde (2026). Conde‑Ruler: a Python ruler for measuring the Conde current. 
+https://github.com/gustavosouzaconde40-ai/conde-governante
 A machine-readable citation is provided in `CITATION.cff`.
 
 ## License
