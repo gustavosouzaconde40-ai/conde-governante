@@ -3,11 +3,13 @@ title: "Conde-Ruler: a Python ruler for measuring the Conde current"
 authors:
   - family-names: Conde
     given-names: Gustavo Alves
-    affiliation: Independent Researcher, Baixo Guandu, ES, Brazil
+    affiliation:
+      - "Independent Researcher, Baixo Guandu, ES, Brazil"
 version: "0.1.0"
-doi: "" # add DOI after archiving on Zenodo
+doi: ""  # add DOI after archiving on Zenodo
 url: "https://github.com/gustavosouzaconde40-ai/conde-ruler"
 message: "Conde-Ruler: a Python ruler for measuring the Conde current"
+date-released: "2026-08-31"
 prefer-citation: "paper"
 license: MIT
 keywords:
