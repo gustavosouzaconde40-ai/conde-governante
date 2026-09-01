@@ -36,6 +36,10 @@ print(result)
 
 Include a short, runnable example in `examples/` or `notebooks/` for users to reproduce results quickly.
 
+## Large datasets
+
+Large datasets (for example, `prime_gaps_1M.csv.gz`) have been moved to Zenodo to keep the repository lightweight. Please download them from the project's Zenodo archive (DOI to be added) or contact the maintainer. Small example datasets required for tests and tutorials are included in the repository.
+
 ## Running tests
 
 Run the test-suite with pytest after installing the test extras:
