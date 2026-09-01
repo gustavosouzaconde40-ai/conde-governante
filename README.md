@@ -64,3 +64,4 @@ A machine-readable citation is provided in `CITATION.cff`.
 ## License
 
 This project is licensed under the terms in the `LICENSE` file.
+v1.0.3 - 01/09/2026
