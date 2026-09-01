@@ -14,24 +14,24 @@ index: 1
 date: 2026-08-31
 bibliography: paper.bib
 Resumo
-Conde-Ruler é um pacote Python leve que fornece uma "régua" programática e reproduzível para medir e caracterizar a corrente de Conde a partir de séries temporais de observações.
+Conde-Ruler e um pacote Python leve que fornece uma "regua" programmatica e reproduzivel para medir e caracterizar a corrente de Conde.
 
-Declaração de necessidade
-A medição precisa e reproduzível de correntes oceânicas e costeiras é fundamental para muitas aplicações científicas e de engenharia. A corrente de Conde é comumente relatada por diferentes plataformas e processada com scripts específicos que raramente são compilados para reutilização.
+Declaracao de necessidade
+A medicao precisa e reproduzivel de correntes oceanicas e costeiras e fundamental para muitas aplicacoes.
 
-Características
-Pré-processamento de séries temporais: reamostragem uniforme, tratamento de lacunas, remoção de tendências.
-Extração de corrente de Condé: algoritmos para estimar amplitude e fase locais.
-Estatísticas resumidas e diagnósticos.
+Caracteristicas
+Pre-processamento de series temporais
+Extracao de corrente de Conde
+Estatisticas resumidas e diagnosticos
 Controle de qualidade
-O Conde-Ruler inclui um conjunto de testes unitários e de integração (pytest) que avalia a importabilidade, a consistência numérica em dados sintéticos e os principais casos extremos. O repositório fornece um pequeno conjunto de dados de exemplo. A integração contínua (GitHub Actions) está configurada para executar o conjunto de testes em todas as versões do Python suportadas (3.9, 3.10, 3.11) a cada push e pull request.
+O Conde-Ruler inclui um conjunto de testes unitarios e de integracao (pytest) que avalia a importabilidade, a consistencia numerica em dados sinteticos e os principais casos extremos. Integracao continua (GitHub Actions) configurada para executar os testes em Python 3.9, 3.10, 3.11.
 
 Disponibilidade
-Código-fonte: GitHub — https://github.com/gustavosouzaconde40-ai/conde-governante
-Licença: MIT
-Instalação: pip install.
-Versões do Python suportadas: 3.9, 3.10 e 3.11
-Conjuntos de dados grandes: arquivados no Zenodo (DOI a ser adicionado).
+Codigo-fonte: https://github.com/gustavosouzaconde40-ai/conde-governante
+Licenca: MIT
+Instalacao: pip install .
+Versoes suportadas: 3.9, 3.10, 3.11
 
-Referências
-Conde, G. A. (2026). Conde-Ruler. GitHub repository.
+Referencias
+Conde, G. A. (2026). Conde-Ruler. GitHub.
+
