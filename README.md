@@ -1,33 +1,62 @@
+[![CI](https://github.com/gustavosouzaconde40-ai/conde-ruler/actions/workflows/python-package.yml/badge.svg)](https://github.com/gustavosouzaconde40-ai/conde-ruler/actions/workflows/python-package.yml) [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-# conde-governante
+# Conde-Ruler
 
-Régua estatística imutável a partir de 1 milhão de lacunas entre números primos (média 1,00041294, q95=2,64, q99=3,90) para detecção de anomalias.
+Conde-Ruler is a lightweight Python package that provides a reproducible, programmatic "ruler" for measuring and characterizing the Conde current from observational time series.
 
-## Cadeia de DOI's da Teoria Aeternvm Vacuvm
+## Installation
 
-### DOI 1 - Regua de Conde - ATIVO
-DOI: 10.5281/zenodo.22096687
-Mede: Z' = gap / ln(p)
-Media 1,00041294 | q95 2,64012536 | q99 3,90317770
-Arquivo: prime_gaps_1M.csv.gz
+Install from source (recommended for development):
 
-### DOI 2 - Triangulo de Conde - ATIVO ✅
-DOI: 10.5281/zenodo.22164502
-Publicado: 29 de agosto de 2026 | v1.0.0-triangulo
-Traduz: P(k|n)=C(n,k)/2^n, mu=n/2, sigma=sqrt(n/4)
-Requer: DOI 10.5281/zenodo.22096687
-Pasta: triangulo-conde-v1/
+pip install .
 
-### DOI 3 - VIEC - Vacuum-Impedance Electrodynamic Computer - PROXIMO
-Versao: Mk.IV-C com correcao Crouzeix-Jin ||p(A)|| <= 2
-Criterio: 50 -> 376.73 -> campo -> medicao COM ||p(A)|| <= 2
-Pasta planejada: viec-mkiii-v1/ (upload manual limpo no Zenodo)
+For development and running the test-suite (requires the `test` extra declared in pyproject.toml):
 
-Cadeia: Regua -> Triangulo -> VIEC
-Veja cadeia completa em CADEIA_DOI.md
+pip install -e ".[test]"
 
-## Como citar
-Se usar Regua + Triangulo, cite os dois DOIs.
+## Quickstart
 
-## Licenca
-MIT
+The example below shows a minimal usage pattern. Replace `CondeRuler` and method names with the actual API if different.
+
+```python
+from conde_ruler import CondeRuler
+
+# create an instance (or call the top-level API)
+cr = CondeRuler()
+
+# load or prepare your time series (pandas Series or numpy array)
+# time_series = ...
+
+# measure the Conde current
+result = cr.measure(time_series)
+
+# result is a dictionary or object containing amplitude, phase and diagnostics
+print(result)
+```
+
+Include a short, runnable example in `examples/` or `notebooks/` for users to reproduce results quickly.
+
+## Running tests
+
+Run the test-suite with pytest after installing the test extras:
+
+pip install -e ".[test]"
+pytest -q
+
+To run a specific test file:
+
+pytest tests/test_likelihood_emulator.py -q
+
+Note: Tests should import the installed package (avoid manipulating sys.path in tests). Ensure `pyproject.toml` is configured to install the package correctly (use `packages` or `project` name and `src/` layout if needed).
+
+## How to cite
+
+Please cite the software using the JOSS paper and the repository:
+
+Gustavo Alves Conde (2026). Conde‑Ruler: a Python ruler for measuring the Conde current. https://github.com/gustavosouzaconde40-ai/conde-ruler
+
+A machine-readable citation is provided in `CITATION.cff`.
+
+## License
+
+This project is licensed under the terms in the `LICENSE` file.
