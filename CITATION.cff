@@ -1,0 +1,17 @@
+cff-version: 1.2.0
+title: "Conde-Ruler: a Python ruler for measuring the Conde current"
+authors:
+  - family-names: Conde
+    given-names: Gustavo Alves
+    affiliation: Independent Researcher, Baixo Guandu, ES, Brazil
+version: "0.1.0"
+doi: "" # add DOI after archiving on Zenodo
+url: "https://github.com/gustavosouzaconde40-ai/conde-ruler"
+message: "Conde-Ruler: a Python ruler for measuring the Conde current"
+prefer-citation: "paper"
+license: MIT
+keywords:
+  - Conde current
+  - geophysics
+  - time series
+  - Python
