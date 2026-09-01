@@ -3,7 +3,10 @@ title: "Conde-Ruler: a Python ruler for measuring the Conde current"
 tags: [Conde_current, geophysical_measurement, time_series, Python]
 authors:
     - name: Gustavo Alves Conde
-    affiliation: Independent Researcher, Baixo Guandu, ES, Brazil
+    affiliation: 1
+affiliations:
+    - name: Independent Researcher, Baixo Guandu, ES, Brazil
+    index: 1
 date: 2026-08-31
 bibliography: paper.bib
 ---
